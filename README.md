@@ -2,7 +2,7 @@
 
 This project implements only a single key functionality. Take a screenshot of a quiz page, feed it to gemini, and return it.
 
-This project is intended to be used with quizzes that are trivial. e.g. "Which of these words are nouns?", "Which of these images contain bicycles", etc.
+This project is intended to be used with trivia or silly questions. e.g. "Who is widely hailed as having invented the first automobile?", "What is a bicycle with one wheel called?", etc.
 
 
 # Get Started
