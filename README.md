@@ -9,4 +9,4 @@ This project is intended to be used with quizzes that are trivial. e.g. "Which o
 The instructions are simple:
 1. Simply add your Gemini API key to a `.env` file.
 2. Call the `init()` function from the module.
-2. Call the `answerVisableQuizQuestion()` function in the `main.py` file.
+3. Call the `answerVisableQuizQuestion()` function in the `main.py` file.
