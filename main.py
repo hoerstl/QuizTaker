@@ -17,7 +17,8 @@ def requiresDefinedModel(func):
         global GOOGLE_API_KEY
         if not GOOGLE_API_KEY:
             print("It looks like we were unable to load the `GOOGLE_API_KEY` environment variable.\n"
-                  "To enable AI features, please add a `GOOGLE_API_KEY` to the .env file.")
+                  "Or, init() was not called to load the `GOOGLE_API_KEY`.\n"
+                  "To enable AI features, please add your `GOOGLE_API_KEY` to the .env file.")
             return "GOOGLE_API_KEY environment variable not found."
         return func(*args, **kwargs)
     return wrapper
