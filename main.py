@@ -55,6 +55,18 @@ def answerVisableQuizQuestion(verbose: bool = False) -> str:
     return answer
 
 
+@requiresDefinedModel
+def answerVisableExtendedResponseQuestion() -> str:
+    try:
+        prompt = "This is a screenshot of an extended response question. Write a decently lengthy response to the question (about a paragraph or so)."
+        answer = askGemeni(prompt,
+                           getScreenshot())
+    except:
+        answer = "Something went wrong when we tried to ask Gemini this question"
+
+    return answer
+
+
 def init():
     global GOOGLE_API_KEY, gemini_model
     GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
@@ -65,7 +77,7 @@ def init():
 def main():
     init()
     time.sleep(5)
-    print(answerVisableQuizQuestion(verbose=True))
+    print(answerVisableExtendedResponseQuestion())
 
 if __name__ == "__main__":
     dotenv.load_dotenv()
