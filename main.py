@@ -48,7 +48,7 @@ def answerVisableQuizQuestion(verbose: bool = False) -> str:
         prompt = "This image is a picture of a multiple choice question on a quiz. Please transcribe the question in the following format, you may use more or fewer choices depending on the number of options given:\nQuestion here\na. Option 1\nb. Option 2\nc. Option 3\nd. Option 4"
         question = askGemeni(prompt,
                            getScreenshot())
-        prompt = f"The following is a multiple choice question on a quiz. Which is the correct answer?\n{question}"
+        prompt = f"The following is a multiple choice question on a quiz. Which are correct answer(s)?\n{question}"
         if not verbose: prompt += " Respond only with the correct answer."
         answer = askGemeni(prompt)
     except Exception as e:
