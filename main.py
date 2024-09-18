@@ -45,11 +45,13 @@ def askGemeni(prompt: str, image: Image = None):
 @requiresDefinedModel
 def answerVisableQuizQuestion(verbose: bool = False) -> str:
     try:
-        prompt = "This is a screenshot of a question on a quiz. Which answer do you believe is correct?"
-        if not verbose: prompt += " Respond only with the correct answer."
-        answer = askGemeni(prompt,
+        prompt = "This image is a picture of a multiple choice question on a quiz. Please transcribe the question in the following format, you may use more or fewer choices depending on the number of options given:\nQuestion here\na. Option 1\nb. Option 2\nc. Option 3\nd. Option 4"
+        question = askGemeni(prompt,
                            getScreenshot())
-    except:
+        prompt = f"The following is a multiple choice question on a quiz. Which is the correct answer?\n{question}"
+        if not verbose: prompt += " Respond only with the correct answer."
+        answer = askGemeni(prompt)
+    except Exception as e:
         answer = "Something went wrong when we tried to ask Gemini this question"
 
     return answer
@@ -77,6 +79,7 @@ def init():
 def main():
     init()
     time.sleep(5)
+    print(answerVisableQuizQuestion())
     print(answerVisableExtendedResponseQuestion())
 
 if __name__ == "__main__":
