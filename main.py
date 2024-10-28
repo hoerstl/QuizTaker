@@ -69,9 +69,9 @@ def answerVisableExtendedResponseQuestion() -> str:
     return answer
 
 
-def init():
+def init(api_key=None):
     global GOOGLE_API_KEY, gemini_model
-    GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
+    GOOGLE_API_KEY = api_key if api_key else os.getenv('GOOGLE_API_KEY')
     genai.configure(api_key=GOOGLE_API_KEY)
     gemini_model = genai.GenerativeModel('gemini-1.5-flash')
 
