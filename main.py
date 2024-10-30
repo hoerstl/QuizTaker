@@ -8,17 +8,13 @@ import time
 import google.generativeai as genai
 
 # Define globals
-GOOGLE_API_KEY = None
 gemini_model = None
 
 
 def requiresDefinedModel(func):
     def wrapper(*args, **kwargs):
-        global GOOGLE_API_KEY
-        if not GOOGLE_API_KEY:
-            print("It looks like we were unable to load the `GOOGLE_API_KEY` environment variable.\n"
-                  "Or, init() was not called to load the `GOOGLE_API_KEY`.\n"
-                  "To enable AI features, please add your `GOOGLE_API_KEY` to the .env file.")
+        if not os.environ.get('GOOGLE_API_KEY'):
+            print("It looks like we were unable to load the `GOOGLE_API_KEY` environment variable.")
             return "GOOGLE_API_KEY environment variable not found."
         return func(*args, **kwargs)
     return wrapper
@@ -70,9 +66,10 @@ def answerVisableExtendedResponseQuestion() -> str:
 
 
 def init(api_key=None):
-    global GOOGLE_API_KEY, gemini_model
-    GOOGLE_API_KEY = api_key if api_key else os.getenv('GOOGLE_API_KEY')
-    genai.configure(api_key=GOOGLE_API_KEY)
+    global gemini_model
+    if api_key: 
+        os.environ["GOOGLE_API_KEY"] = api_key
+        genai.configure(api_key=api_key)
     gemini_model = genai.GenerativeModel('gemini-1.5-flash')
 
 
